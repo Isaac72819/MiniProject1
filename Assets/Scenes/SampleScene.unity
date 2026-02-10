@@ -3251,7 +3251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97622868a6d7414489aeb2073c9bcf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTimer
-  timeRemaining: 30
+  timeRemaining: 45
   timerText: {fileID: 1208924495}
   deathScreen: {fileID: 1788993416}
 --- !u!4 &1272276537
