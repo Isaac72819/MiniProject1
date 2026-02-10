@@ -47,9 +47,9 @@ public class RobertMove : MonoBehaviour
 
     //Flip the character to face direction of movement
     if (horizontalInput > 0.01f)
-        transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f);
-    else if (horizontalInput < -0.01f)
         transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+    else if (horizontalInput < -0.01f)
+        transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f);
 
     //Set velocity based on input (Take off for birds eye view)
     //body.linearVelocity = new Vector2(horizontalInput * speed, body.linearVelocity.y);

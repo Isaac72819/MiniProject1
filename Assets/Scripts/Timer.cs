@@ -1,20 +1,48 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Collections;
+using TMPro;
 
-public class SceneTimer : MonoBehaviour
+
+public class GameTimer : MonoBehaviour
 {
-    public float delay = 5f;
-    public string sceneName;
+    public float timeRemaining = 60f;
+    public TextMeshProUGUI timerText;
+    public GameObject deathScreen;
 
-    void Start()
+    private bool timerRunning = true;
+
+    void Update()
     {
-        StartCoroutine(LoadSceneAfterTime());
+        if (!timerRunning) return;
+
+        if (timeRemaining > 0)
+        {
+            timeRemaining -= Time.deltaTime;
+            UpdateTimerUI();
+        }
+        else
+        {
+            timeRemaining = 0;
+            timerRunning = false;
+            TimerEnded();
+        }
     }
 
-    IEnumerator LoadSceneAfterTime()
+    void UpdateTimerUI()
     {
-        yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene(sceneName);
+        int minutes = Mathf.FloorToInt(timeRemaining / 60);
+        int seconds = Mathf.FloorToInt(timeRemaining % 60);
+        timerText.text = $"{minutes:00}:{seconds:00}";
+    }
+
+    void TimerEnded()
+    {
+        deathScreen.SetActive(true);
+        Time.timeScale = 0f; // Freeze the game
+    }
+
+    public void StopTimer()
+    {
+        timerRunning = false;
     }
 }
+
