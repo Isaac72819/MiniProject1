@@ -1,34 +1,49 @@
 using UnityEngine;
 
-public class chaser : MonoBehaviour
+public class EnemyChase2D : MonoBehaviour
 {
-    public float speed = 2f;
-    public float stoppingDistance = 1.5f;
+    [Header("Chase Settings")]
+    public float speed = 3f;
+    public float detectionRadius = 8f;
+    public float stopDistance = 0.5f;
 
-    private Transform Player;
+    Transform Player;
+    Rigidbody2D rb;
+
+    void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     void Start()
     {
-        Player = GameObject.FindGameObjectWithTag("Player").transform;
-
-        // Force chaser onto 2D plane
-        transform.position = new Vector3(transform.position.x, transform.position.y, 0);
+        GameObject p = GameObject.FindGameObjectWithTag("Player"); // FIXED TAG
+        if (p != null) Player = p.transform;
     }
 
-    void Update()
+    void FixedUpdate()
     {
+
+
         if (Player == null)
-            return;
-
-        float distance = Vector2.Distance(transform.position, Player.position);
-
-        if (distance > stoppingDistance)
         {
-            transform.position = Vector2.MoveTowards(
-                (Vector2)transform.position,
-                (Vector2)Player.position,
-                speed * Time.deltaTime
-            );
+            GameObject p = GameObject.FindGameObjectWithTag("Player");
+            if (p != null) Player = p.transform;
+
+            rb.velocity = Vector2.zero;
+            return;
         }
+
+        float dist = Vector2.Distance(rb.position, Player.position);
+
+        if (dist > detectionRadius || dist <= stopDistance)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
+        Vector2 dir = ((Vector2)Player.position - rb.position).normalized;
+
+        rb.velocity = dir * speed; // FIXED MOVEMENT
     }
 }
