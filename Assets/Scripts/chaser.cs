@@ -30,7 +30,7 @@ public class EnemyChase2D : MonoBehaviour
             GameObject p = GameObject.FindGameObjectWithTag("Player");
             if (p != null) Player = p.transform;
 
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             return;
         }
 
@@ -38,12 +38,12 @@ public class EnemyChase2D : MonoBehaviour
 
         if (dist > detectionRadius || dist <= stopDistance)
         {
-            rb.velocity = Vector2.zero;
+            rb.linearVelocity = Vector2.zero;
             return;
         }
 
         Vector2 dir = ((Vector2)Player.position - rb.position).normalized;
 
-        rb.velocity = dir * speed; // FIXED MOVEMENT
+        rb.linearVelocity = dir * speed; // FIXED MOVEMENT
     }
 }
