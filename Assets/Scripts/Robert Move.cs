@@ -11,6 +11,8 @@ public class RobertMove : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        GameSettings.Load();
+        speed = GameSettings.PlayerSpeed;
     }
 
     // Update is called once per frame
