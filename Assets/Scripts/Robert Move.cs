@@ -4,8 +4,12 @@ using UnityEngine.InputSystem;
 public class RobertMove : MonoBehaviour
 {
     private Rigidbody2D body;
+    public Animator animator;
+
+    public GameTimer gameTimer; // Reference to the GameTimer script
+
     [SerializeField] private float speed = 10f;
-    [SerializeField] private float jump = 10f;
+    //[SerializeField] private float jump = 10f;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,6 +25,7 @@ public class RobertMove : MonoBehaviour
         float horizontalInput = 0f;
         float verticalInput = 0f; 
         body.gravityScale = 0f; //for bird eye view
+
         
 
     //Left right movement inputs
@@ -45,13 +50,16 @@ public class RobertMove : MonoBehaviour
     else if (Keyboard.current.downArrowKey.isPressed)
         verticalInput = -1f;
 
+    animator.SetFloat("horz", Mathf.Abs(horizontalInput));
+    animator.SetFloat("vert", Mathf.Abs(verticalInput));
     
+        
 
     //Flip the character to face direction of movement
     if (horizontalInput > 0.01f)
-        transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+        transform.localScale = new Vector3(4f, 4f, 4f);
     else if (horizontalInput < -0.01f)
-        transform.localScale = new Vector3(-0.3f, 0.3f, 0.3f);
+        transform.localScale = new Vector3(-4f, 4f, 4f);
 
     //Set velocity based on input (Take off for birds eye view)
     //body.linearVelocity = new Vector2(horizontalInput * speed, body.linearVelocity.y);
