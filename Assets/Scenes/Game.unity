@@ -4375,10 +4375,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97622868a6d7414489aeb2073c9bcf4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameTimer
-  timeRemaining: 45
-  animator: {fileID: 1864941763}
+  timeRemaining: 5
   timerText: {fileID: 1208924495}
-  deathScreen: {fileID: 1788993416}
 --- !u!4 &1272276537
 Transform:
   m_ObjectHideFlags: 0
@@ -5986,6 +5984,7 @@ GameObject:
   - component: {fileID: 1864941760}
   - component: {fileID: 1864941762}
   - component: {fileID: 1864941763}
+  - component: {fileID: 1864941764}
   m_Layer: 0
   m_Name: Robert
   m_TagString: Player
@@ -6183,6 +6182,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fb88465b2bee04282e7c632eacad10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  body: {fileID: 1864941756}
+  timer: {fileID: 1272276536}
+  animator: {fileID: 1864941763}
+  deathScreen: {fileID: 1788993416}
 --- !u!95 &1864941763
 Animator:
   serializedVersion: 7
@@ -6205,6 +6208,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1864941764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864941755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97622868a6d7414489aeb2073c9bcf4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameTimer
+  timeRemaining: 60
+  timerText: {fileID: 0}
 --- !u!1 &1912924051
 GameObject:
   m_ObjectHideFlags: 0

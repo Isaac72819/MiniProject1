@@ -4,18 +4,15 @@ using TMPro;
 
 public class GameTimer : MonoBehaviour
 {
-    public float timeRemaining = 60f;
-    public Animator animator;
+    public float timeRemaining;
     public TextMeshProUGUI timerText;
-    public GameObject deathScreen;
     private bool timerRunning = true;
+
 
     void Update()
     {
         if (!timerRunning) 
-        {
-            animator.SetFloat("time", 0f);
-        return;}
+        {return;}
 
         if (timeRemaining > 0)
         {
@@ -25,7 +22,6 @@ public class GameTimer : MonoBehaviour
         else
         {
             timeRemaining = 0;
-            
             timerRunning = false;
             TimerEnded();
         }
@@ -40,9 +36,7 @@ public class GameTimer : MonoBehaviour
 
     void TimerEnded()
     {
-        deathScreen.SetActive(true);
-        //Time.timeScale = 0f; // Freeze the game
-
+        
     }
 
     public void StopTimer()
